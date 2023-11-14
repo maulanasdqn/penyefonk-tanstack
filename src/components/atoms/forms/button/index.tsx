@@ -1,13 +1,14 @@
 import clsx from "clsx";
-import { FC, ReactElement } from "react";
+import { FC, Fragment, ReactElement } from "react";
 import { TButton } from "./type";
+import { Link } from "@tanstack/react-router";
 
 export const Button: FC<TButton> = (props): ReactElement => {
   const { loading = "false", variant = "primary", size = "md" } = props;
 
   const className = clsx(
     "rounded-lg border hover:opacity-80",
-    "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-white",
+    "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-white active:opacity-100",
     {
       "bg-blue-500 text-white": variant === "primary",
       "bg-white text-blue-500 border-blue-500": variant === "secondary",
@@ -27,8 +28,18 @@ export const Button: FC<TButton> = (props): ReactElement => {
   );
 
   return (
-    <button data-testid="button" className={className} {...props}>
-      {loading === "true" ? "Loading..." : props.children}
-    </button>
+    <Fragment>
+      {props.href ? (
+        <Link href={props.href}>
+          <button data-testid="button" className={className} {...props}>
+            {loading === "true" ? "Loading..." : props.children}
+          </button>
+        </Link>
+      ) : (
+        <button data-testid="button" className={className} {...props}>
+          {loading === "true" ? "Loading..." : props.children}
+        </button>
+      )}
+    </Fragment>
   );
 };

@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 export const Label: FC<TLabel> = (props): ReactElement => {
   const className = clsx(
-    "flex gap-x-1 text-gray-500 select-none font-medium",
+    "flex gap-x-1 text-gray-500 select-none font-medium cursor-pointer",
     {
       "text-sm": props.size === "sm",
       "text-base": props.size === "md",

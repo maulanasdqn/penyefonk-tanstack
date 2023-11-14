@@ -5,7 +5,7 @@ import { Button } from "./index";
 const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
-  title: "Atoms/Button",
+  title: "Components/Atoms/Forms/Button",
   argTypes: {
     variant: {
       options: ["primary", "secondary", "error", "cancel", "warning", "success"],
@@ -21,6 +21,9 @@ const meta: Meta<typeof Button> = {
     },
     disabled: {
       control: { type: "boolean" },
+    },
+    href: {
+      control: { type: "text" },
     },
   },
 };
