@@ -8,4 +8,5 @@ export type TCommonForms = {
   append?: ReactNode;
   preppend?: ReactNode;
   text?: string;
+  hint?: string;
 };

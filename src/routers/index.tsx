@@ -1,24 +1,30 @@
-import { MainLayout } from "@/layouts";
-import { HomePage, AboutPage } from "@/pages";
+import { MainTemplate } from "@/components";
+import { TAssetParam } from "@/modules/assets/type";
+import { HomePage } from "@/pages";
 import { RootRoute, Route, Router } from "@tanstack/react-router";
 
 const rootRoute = new RootRoute({
-  component: MainLayout,
+  component: MainTemplate,
 });
 
-const homeRoute = new Route({
+export const homeRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
   component: HomePage,
+  validateSearch: (search: Record<string, unknown>): TAssetParam => {
+    return {
+      search: String(search?.search) || "",
+      ids: String(search?.ids) || "",
+      limit: Number(search?.limit) ?? 10,
+      offset: Number(search?.offset) ?? 0,
+    };
+  },
+  load: ({ search }) => {
+    search;
+  },
 });
 
-const aboutRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: "/about",
-  component: AboutPage,
-});
-
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([homeRoute]);
 
 export const router = new Router({ routeTree });
 

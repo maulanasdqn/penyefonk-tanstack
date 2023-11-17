@@ -1,14 +1,14 @@
-import { TCommonForms, TInput } from "@/entities";
 import { forwardRef, ReactElement } from "react";
 import { inputClassName } from "@/utils";
+import { TInputText } from "./type";
 
-export const InputText = forwardRef<HTMLInputElement, Omit<TInput, "size"> & TCommonForms>(
+export const InputText = forwardRef<HTMLInputElement, TInputText>(
   ({ size, ...props }, ref): ReactElement => {
     return (
       <input
+        {...props}
         data-testid="input-text"
         className={inputClassName({ size, ...props })}
-        {...props}
         ref={ref}
         id={props.name}
       />

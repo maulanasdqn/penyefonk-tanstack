@@ -8,7 +8,7 @@ import { TFieldSet } from "@/entities";
 export const Fieldset: FC<TFieldSet> = (props): ReactElement => {
   const { status = "none" } = props;
 
-  const className = clsx("text-xs flex items-center gap-x-1", {
+  const className = clsx("text-xs flex items-center gap-x-1 mt-[-7px]", {
     "text-red-400": status === "error",
     "text-green-400": status === "success",
     "text-gray-400": status === "none",
@@ -87,11 +87,12 @@ export const Fieldset: FC<TFieldSet> = (props): ReactElement => {
     <fieldset className="flex flex-col gap-y-2">
       {inputType}
       {props.message && status !== "none" && (
-        <legend className={className}>
+        <span className={className}>
           {statusIcon}
           {props.message}
-        </legend>
+        </span>
       )}
+      {props?.hint && <span className="text-xs text-gray-400 mt-[-6px] italic">*{props.hint}</span>}
     </fieldset>
   );
 };

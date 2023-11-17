@@ -1,11 +1,14 @@
-import { FC, ReactElement } from "react";
-import { Link } from "@tanstack/react-router";
+import { FC, ReactElement, Suspense } from "react";
+import { lazily } from "react-lazily";
+
+const { AssetModules } = lazily(() => import("@/modules"));
 
 export const HomePage: FC = (): ReactElement => {
   return (
-    <section className="flex flex-col gap-y-4 w-full h-full justify-center items-center">
-      <h1 className="text-red-500 font-medium text-3xl">Home Page</h1>
-      <Link to="/about">About</Link>
+    <section className="flex flex-col gap-y-4 w-full overflow-x-auto h-full justify-center items-center">
+      <Suspense fallback="Loading...">
+        <AssetModules />
+      </Suspense>
     </section>
   );
 };

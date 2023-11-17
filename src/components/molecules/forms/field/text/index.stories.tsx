@@ -10,9 +10,6 @@ const meta: Meta<typeof FieldText> = {
     required: {
       control: { type: "boolean" },
     },
-    text: {
-      control: { type: "text" },
-    },
     size: {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
@@ -27,6 +24,9 @@ const meta: Meta<typeof FieldText> = {
     name: {
       control: { type: "text" },
     },
+    type: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -38,7 +38,6 @@ export const Primary: Story = {
     size: "sm",
     required: false,
     label: "Waduh",
-    text: "Nama Lengkap",
     status: "none",
     name: "nama",
     placeholder: "Nama Lengkap",

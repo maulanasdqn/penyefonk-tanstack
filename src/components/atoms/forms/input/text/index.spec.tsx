@@ -89,11 +89,6 @@ describe("Test InputText Functionality", () => {
     expect(getByTestId("input-text")).toHaveAttribute("status", "error");
   });
 
-  it("Should have message", () => {
-    const { getByTestId } = render(<InputText message="test" />);
-    expect(getByTestId("input-text")).toHaveAttribute("message", "test");
-  });
-
   it("Should onChange be called", () => {
     const onChangeFn = vi.fn();
     const { getByTestId } = render(<InputText onChange={onChangeFn} />);
